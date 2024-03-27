@@ -1,0 +1,25 @@
+\documentclass{standalone}
+\usepackage{circuitikz}
+\begin{document}
+
+\usetikzlibrary {circuits.logic.US}
+\begin{tikzpicture}[circuit logic US]
+	\matrix[column sep=6mm]
+	{
+		\node (i0) {A}; &                            & \\
+		& \node [or gate] (a1) {};  & \\
+		\node (i1) {B}; &                            & \node [xnor gate] (o) {};\\
+		& \node [nand gate] (a2) {}; & \\
+		\node (i2) {C}; &                            & \\
+	};
+	\draw (i0.east) -- ++(right:3mm) |- (a1.input 1);
+	\draw (i1.east) -- ++(right:3mm) |- (a1.input 2);
+	\draw (i1.east) -- ++(right:3mm) |- (a2.input 1);
+	\draw (i2.east) -- ++(right:3mm) |- (a2.input 2);
+	\draw (a1.output) -- ++(right:3mm) |- (o.input 1);
+	\draw (a2.output) -- ++(right:3mm) |- (o.input 2);
+	\draw (o.output) -- ++(right:3mm);
+\end{tikzpicture}
+
+
+\end{document}

@@ -1,0 +1,13 @@
+\documentclass{standalone}
+\usepackage{circuitikz}
+\begin{document}
+\begin{circuitikz} 
+%	\ctikzset{logic ports=ieee}
+	\draw
+	(0,2) node[and port](myand1){1}
+	(0,0) node[and port](myand2){2}
+	(2,1) node[xnor port](myxnor){3}
+	(myand1.out) -| (myxnor.in 1)
+	(myand2.out) -| (myxnor.in 2);
+	\end{circuitikz}
+\end{document}

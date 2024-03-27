@@ -1,0 +1,23 @@
+% Author: Massimo A. Redaelli / Stefan Lindner / Stefan Erhardt / Romano Giannetti
+% Source: https://mirror.its.dal.ca/ctan/graphics/pgf/contrib/circuitikz/doc/circuitikzmanual.pdf
+\documentclass{standalone}
+\usepackage{circuitikz}
+
+% Model of a throttle valve that is used inside an internal
+% combustion engine. The mechatronic system is modelled
+% by simplified subsystems that allow an easier description.
+% Was used in a student project at technical university Berlin
+%
+% Author: Mathias Busse, Germany (busse@teco.edu)
+\begin{document}
+	\begin{circuitikz}
+		\draw (0,0) node[npn](npn1) {}
+		(npn1.base) node[anchor=east] {B}
+		(npn1.collector) node[anchor=south,xshift=0.5cm] {C}
+		(npn1.emitter) node[anchor=north] {E};
+		\draw (npn1.collector) to[R] ++(0,2);
+	\end{circuitikz}
+\end{document}
+
+
+
