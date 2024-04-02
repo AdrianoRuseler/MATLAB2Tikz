@@ -1,0 +1,66 @@
+\documentclass[border=3mm]{standalone}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes.gates.logic.US,shapes.gates.logic.IEC,calc}
+\begin{document}
+	\thispagestyle{empty}
+	\tikzstyle{branch}=[fill,shape=circle,minimum size=3pt,inner sep=0pt]
+	\begin{tikzpicture}[label distance=2mm]
+		
+		\node (A) at (0,0) {$A$};
+		\node (B) at (1,0) {$B$};
+		\node (C) at (2,0) {$C$};
+		\node (D) at (3,0) {$D$};
+		
+		\node[not gate US, draw, rotate=-90] at ($(A)+(0.5,-1)$) (NotA) {};
+		\node[not gate US, draw, rotate=-90] at ($(B)+(0.5,-1)$) (NotB) {};
+		\node[not gate US, draw, rotate=-90] at ($(C)+(0.5,-1)$) (NotC) {};
+		\node[not gate US, draw, rotate=-90] at ($(D)+(0.5,-1)$) (NotD) {};
+	
+	
+	\node[xor gate US, draw, logic gate inputs=nn] at ($(D)+(2,-2)$) (gate1) {1};
+	\node[xor gate US, draw, logic gate inputs=nn] at ($(gate1)+(0,-1)$) (gate2) {2};
+	\node[xor gate US, draw, logic gate inputs=nn] at ($(gate2)+(0,-1)$) (gate3) {3};
+	\node[xor gate US, draw, logic gate inputs=nn] at ($(gate3)+(0,-1)$) (gate4) {4};
+	
+	\node[and gate US, draw, logic gate inputs=nn, anchor=input 1] at ($(gate1.output)+(1,0)$) (gate5) {5};
+	
+	\node[and gate US, draw, logic gate inputs=nn, anchor=input 1] at ($(gate3.output)+(1,0)$) (gate6) {6};	
+	
+	\node[and gate US, draw, logic gate inputs=nn, anchor=input 1] at ($(gate5.output)+(1,-1)$) (gate7) {7};
+		
+	
+	
+	\foreach \i in {A,B,C,D}
+	{
+		\path (\i) -- coordinate (punt\i) (\i |- Not\i.input);
+		\draw (punt\i) node[branch] {} -| (Not\i.input);
+	}
+	
+	\draw (A) |- (gate1.input 1);
+	\draw (NotA) |- (gate2.input 1);
+	
+	\draw (B) |- (gate1.input 2);
+	\draw (NotB) |- (gate2.input 2);
+	
+	\draw (C) |- (gate3.input 1);
+	\draw (NotC) |- (gate4.input 1);
+
+	\draw (D) |- (gate3.input 2);
+	\draw (NotD) |- (gate4.input 2);
+	
+	\draw (gate1.output) |- (gate5.input 1);
+	\draw (gate2.output) -- ([xshift=0.5cm]gate2.output) |- (gate5.input 2);
+	
+	\draw (gate3.output) |- (gate6.input 1);
+	\draw (gate4.output) -- ([xshift=0.5cm]gate4.output) |- (gate6.input 2);
+	
+	\draw (gate5.output) -- ([xshift=0.5cm]gate5.output) |- (gate7.input 1);
+	\draw (gate6.output) -- ([xshift=0.5cm]gate6.output) |- (gate7.input 2);
+	
+	%	\draw (x2 |- Or3.input 1) node[branch] {} -- (Or3.input 1);
+	%	\draw (gate2.output) |- (gate5.input 2);
+	\draw (gate7.output) -- ([xshift=0.5cm]gate7.output) node[above] {$Y$};	
+	
+	\end{tikzpicture}
+\end{document} 
