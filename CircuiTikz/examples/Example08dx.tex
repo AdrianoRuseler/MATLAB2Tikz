@@ -1,0 +1,37 @@
+\documentclass[border=1mm]{standalone}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes.gates.logic.US,shapes.gates.logic.IEC,calc}
+\begin{document}
+	\thispagestyle{empty}
+	\tikzstyle{branch}=[fill,shape=circle,minimum size=3pt,inner sep=0pt]
+	\begin{tikzpicture}[label distance=2mm]
+		
+		\node (A) at (0,0) {$A$};
+		\node (B) at (1,0) {$B$};		
+		\node[not gate US, draw, rotate=-90] at ($(A)+(0.5,-1)$) (NotA) {};
+		\node[not gate US, draw, rotate=-90] at ($(B)+(0.5,-1)$) (NotB) {};
+
+
+	\foreach \i in {A,B}
+{
+	\path (\i) -- coordinate (punt\i) (\i |- Not\i.input);
+	\draw (punt\i) node[branch] {} -| (Not\i.input);
+}
+
+\node[and gate US, draw, logic gate inputs=nn] at ($(B)+(2,-2)$) (gate1) {1};
+\node[or gate US, draw, logic gate inputs=nn] at ($(gate1)+(0,-1)$) (gate2) {2};
+\node[xnor gate US, draw, logic gate inputs=nn, anchor=input 1] at ($(gate1.output)+(1,-0.5)$) (gate3) {3};
+
+\draw (A) |- (gate1.input 1);
+\draw (B) |- (gate1.input 2);
+
+\draw (NotA) |- (gate2.input 1);
+\draw (NotB) |- (gate2.input 2);
+
+\draw (gate1.output) -- ([xshift=0.5cm]gate1.output) |- (gate3.input 1);
+\draw (gate2.output) -- ([xshift=0.5cm]gate2.output) |- (gate3.input 2);
+\draw (gate3.output) -- ([xshift=0.5cm]gate3.output) node[above] {$Y$};	
+
+	\end{tikzpicture}
+\end{document} 
