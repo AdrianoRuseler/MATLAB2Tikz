@@ -23,11 +23,11 @@
 	\node[xor gate US, draw, logic gate inputs=nn] at ($(gate2)+(0,-1)$) (gate3) {3};
 	\node[xor gate US, draw, logic gate inputs=nn] at ($(gate3)+(0,-1)$) (gate4) {4};
 	
-	\node[and gate US, draw, logic gate inputs=nn, anchor=input 1] at ($(gate1.output)+(1,0)$) (gate5) {5};
+	\node[and gate US, draw, logic gate inputs=nnnn, anchor=input 1] at ($(gate2.output)+(1,0)$) (gate5) {5};
 	
-	\node[and gate US, draw, logic gate inputs=nn, anchor=input 1] at ($(gate3.output)+(1,0)$) (gate6) {6};	
+%	\node[and gate US, draw, logic gate inputs=nn, anchor=input 1] at ($(gate3.output)+(1,0)$) (gate6) {6};	
 	
-	\node[and gate US, draw, logic gate inputs=nn, anchor=input 1] at ($(gate5.output)+(1,-1)$) (gate7) {7};		
+%	\node[and gate US, draw, logic gate inputs=nn, anchor=input 1] at ($(gate5.output)+(1,-1)$) (gate7) {7};		
 	
 	
 	\foreach \i in {A,B,C,D}
@@ -48,17 +48,12 @@
 	\draw (D) |- (gate3.input 2);
 	\draw (NotD) |- (gate4.input 2);
 	
-	\draw (gate1.output) |- (gate5.input 1);
-	\draw (gate2.output) -- ([xshift=0.5cm]gate2.output) |- (gate5.input 2);	
-	\draw (gate3.output) |- (gate6.input 1);
-	\draw (gate4.output) -- ([xshift=0.5cm]gate4.output) |- (gate6.input 2);
-	
-	\draw (gate5.output) -- ([xshift=0.5cm]gate5.output) |- (gate7.input 1);
-	\draw (gate6.output) -- ([xshift=0.5cm]gate6.output) |- (gate7.input 2);
-	
-	%	\draw (x2 |- Or3.input 1) node[branch] {} -- (Or3.input 1);
-	%	\draw (gate2.output) |- (gate5.input 2);
-	\draw (gate7.output) -- ([xshift=0.5cm]gate7.output) node[above] {$Y$};	
+    \draw (gate1.output) -- ([xshift=0.8cm]gate1.output) |- (gate5.input 1);
+    \draw (gate2.output) -- ([xshift=0.6cm]gate2.output) |- (gate5.input 2);
+    \draw (gate3.output) -- ([xshift=0.6cm]gate3.output) |- (gate5.input 3);
+    \draw (gate4.output) -- ([xshift=0.8cm]gate4.output) |- (gate5.input 4);
+    
+    \draw (gate5.output) -- ([xshift=0.5cm]gate5.output) node[above] {$Y$};
 	
 	\end{tikzpicture}
 \end{document} 

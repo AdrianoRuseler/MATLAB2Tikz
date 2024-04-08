@@ -22,11 +22,11 @@
 }
 
 	
-	\node[xor gate US, draw, logic gate inputs=nn] at ($(C)+(2,-2)$) (gate1) {1};
+\node[and gate US, draw, logic gate inputs=nn] at ($(C)+(2,-2)$) (gate1) {1};
 \node[xor gate US, draw, logic gate inputs=nn] at ($(gate1)+(0,-1)$) (gate2) {2};
 \node[xor gate US, draw, logic gate inputs=nn] at ($(gate2)+(0,-1)$) (gate3) {3};
 
-	\node[and gate US, draw, logic gate inputs=nnn, anchor=input 1] at ($(gate1.output)+(1,-0.5)$) (gate4) {4};	
+\node[and gate US, draw, logic gate inputs=nnn, anchor=input 1] at ($(gate1.output)+(1,-0.5)$) (gate4) {4};	
 
 
 \draw (A) |- (gate1.input 1);

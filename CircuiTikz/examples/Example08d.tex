@@ -5,21 +5,18 @@
 \begin{document}
 	\thispagestyle{empty}
 	\tikzstyle{branch}=[fill,shape=circle,minimum size=3pt,inner sep=0pt]
-	\begin{tikzpicture}[label distance=2mm]
-		
-		\node (A) at (0,0) {$A$};
-		\node (B) at (1,0) {$B$};
+	\begin{tikzpicture}[label distance=2mm]		
+	\node (A) at (0,0) {$A$};
+	\node (B) at (1,0) {$B$};
 	
 		
-		\node[not gate US, draw, rotate=-90] at ($(A)+(0.5,-1)$) (NotA) {};
-		\node[not gate US, draw, rotate=-90] at ($(B)+(0.5,-1)$) (NotB) {};
+	\node[not gate US, draw, rotate=-90] at ($(A)+(0.5,-1)$) (NotA) {};
+	\node[not gate US, draw, rotate=-90] at ($(B)+(0.5,-1)$) (NotB) {};
 
 
-	\foreach \i in {A,B}
-{
-	\path (\i) -- coordinate (punt\i) (\i |- Not\i.input);
-	\draw (punt\i) node[branch] {} -| (Not\i.input);
-}
+	\foreach \i in {A,B}{
+		\path (\i) -- coordinate (punt\i) (\i |- Not\i.input);
+		\draw (punt\i) node[branch] {} -| (Not\i.input);}
 
 \node[and gate US, draw, logic gate inputs=nn] at ($(B)+(2,-2)$) (gate1) {1};
 \node[or gate US, draw, logic gate inputs=nn] at ($(gate1)+(0,-1)$) (gate2) {2};
@@ -27,7 +24,6 @@
 
 \draw (A) |- (gate1.input 1);
 \draw (B) |- (gate1.input 2);
-
 \draw (NotA) |- (gate2.input 1);
 \draw (NotB) |- (gate2.input 2);
 
