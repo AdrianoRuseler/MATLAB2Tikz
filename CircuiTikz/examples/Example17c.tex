@@ -1,0 +1,23 @@
+\documentclass{standalone}
+\usepackage{tikz-timing}
+
+% The following lines makes all signal names smaller in all document
+\tikzset{timing/name/.style={font=\sffamily\scriptsize}} 
+
+\begin{document}
+	\begin{tikztimingtable}[timing/slope=0]
+		A & 16{C}; \\
+		B & 8{2C}; \\
+		C & 4{4C}; \\
+		D & 2{8C}; \\
+		Y & HLHHLLLHHLHLHLHL \\
+		\extracode
+	    \begin{scope}[on background layer]
+			\vertlines[help lines]{}
+			\horlines[help lines]{}
+			\foreach [count=\x] \b in {0,1,...,15} {
+				\node [below,font=\sffamily\bfseries\tiny,inner ysep=2pt] at (\x-.5,-8) {\b};
+			}
+		\end{scope}		
+	\end{tikztimingtable}
+\end{document}

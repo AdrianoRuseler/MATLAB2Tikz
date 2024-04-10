@@ -5,20 +5,18 @@
 \tikzset{timing/name/.style={font=\sffamily\scriptsize}} 
 
 \begin{document}
-
-	\begin{tikztimingtable}
-		A & 16{C}; \\
-		B & 8{2C}; \\
-		C & 4{4C}; \\
-		D & 2{8C}; \\
-		Y & HLHHLLLHHLHLHLHL; \\
-	&  D{A}D{B}D{C}D{D}D{F}D{G}D{H}D{I} \\
+	\begin{tikztimingtable}[timing/slope=0]
+		A & 8{C}; \\
+		B & 4{2C}; \\
+		C & 2{4C}; \\
+		Y & HLHHLLLH \\
 		\extracode
 	    \begin{scope}[on background layer]
 			\vertlines[help lines]{}
-		\end{scope}
-		
+			\horlines[help lines]{}
+			\foreach [count=\x] \b in {0,1,...,7} {
+				\node [below,font=\sffamily\bfseries\tiny,inner ysep=2pt] at (\x-.5,-6) {\b};
+			}
+		\end{scope}		
 	\end{tikztimingtable}
-	
-
 \end{document}
