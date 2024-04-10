@@ -1,0 +1,23 @@
+\documentclass{standalone}
+\usepackage{tikz-timing}
+
+% The following lines makes all signal names smaller in all document
+%\tikzset{timing/name/.style={font=\sffamily\scriptsize}} 
+
+\begin{document}
+
+	\begin{tikztimingtable}
+		A & 8{C}; \\
+		B & 4{2C}; \\
+		C & 2{4C}; \\
+		S & 2{4C}; \\
+		data  &  D{A}D{B}D{C}D{D}D{F}D{G}D{H}D{I} \\
+		\extracode
+	    \begin{scope}[on background layer]
+			\vertlines[help lines]{}
+		\end{scope}
+		
+	\end{tikztimingtable}
+	
+
+\end{document}
