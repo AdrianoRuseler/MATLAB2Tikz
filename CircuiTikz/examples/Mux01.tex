@@ -1,0 +1,67 @@
+\documentclass[border=3mm]{standalone}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes.gates.logic.US,shapes.gates.logic.IEC,calc}
+\begin{document}
+	\thispagestyle{empty}
+	\tikzstyle{branch}=[fill,shape=circle,minimum size=3pt,inner sep=0pt]
+	\begin{tikzpicture}[label distance=2mm]
+		
+		\node (A) at (0,0) {$A$};
+		\node (B) at (1,0) {$B$};
+		\node[not gate US, draw, rotate=-90] at ($(A)+(0.5,-1)$) (NotA) {};
+		\node[not gate US, draw, rotate=-90] at ($(B)+(0.5,-1)$) (NotB) {};
+	
+
+	
+	\path (A) -- coordinate (puntA) (A |- NotA.input);
+	\draw (puntA) node[branch] {} -| (NotA.input);
+	\path (B) -- coordinate (puntB) (B |- NotB.input);
+	\draw (puntB) node[branch] {} -| (NotB.input);
+	
+		
+	\node[and gate US, draw, logic gate inputs=nnn] at ($(B)+(2,-2)$) (gate1) {1};
+	\node[and gate US, draw, logic gate inputs=nnn] at ($(gate1)+(0,-1)$) (gate2) {2};
+	\node[and gate US, draw, logic gate inputs=nnn] at ($(gate2)+(0,-1)$) (gate3) {3};
+	\node[and gate US, draw, logic gate inputs=nnn] at ($(gate3)+(0,-1)$) (gate4) {4};
+	
+	\node[or gate US, draw, logic gate inputs=nnnn, anchor=input 1] at ($(gate2.output)+(1,0)$) (gate5) {5};
+	
+
+
+\draw (NotA) |- (gate4.input 1);
+\draw (NotB) |- (gate4.input 2);	
+
+
+
+%	\draw (NotA) |- (gate2.input 1);
+
+
+
+
+
+
+
+	
+	\node (i0) at ($(gate1.input 3)+(-4,0)$) {$I_0$};
+	\draw (i0) -- (gate1.input 3);
+
+	\node (i1) at ($(gate2.input 3)+(-4,0)$) {$I_1$};
+\draw (i1) -- (gate2.input 3);
+	
+		\node (i2) at ($(gate3.input 3)+(-4,0)$) {$I_2$};
+	\draw (i2) -- (gate3.input 3);
+	
+		\node (i3) at ($(gate4.input 3)+(-4,0)$) {$I_3$};
+	\draw (i3) -- (gate4.input 3);
+	
+	    \draw (gate1.output) -- ([xshift=0.8cm]gate1.output) |- (gate5.input 1);
+	\draw (gate2.output) -- ([xshift=0.6cm]gate2.output) |- (gate5.input 2);
+	\draw (gate3.output) -- ([xshift=0.6cm]gate3.output) |- (gate5.input 3);
+	\draw (gate4.output) -- ([xshift=0.8cm]gate4.output) |- (gate5.input 4);
+	
+	\draw (gate5.output) -- ([xshift=0.5cm]gate5.output) node[above] {$S$};
+	
+	
+	\end{tikzpicture}
+\end{document} 

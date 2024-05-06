@@ -1,0 +1,33 @@
+% Author: Massimo A. Redaelli / Stefan Lindner / Stefan Erhardt / Romano Giannetti
+% Source: https://mirror.its.dal.ca/ctan/graphics/pgf/contrib/circuitikz/doc/circuitikzmanual.pdf
+\documentclass{standalone}
+\usepackage{circuitikz}
+\usepackage{siunitx}
+\begin{document}
+\begin{circuitikz}[]
+ % legacy shapes
+ %\ctikzset{american or shape=roundy}
+% \ctikzset{logic ports/fill=yellow}
+ \node [or port](O1) at (0,0) {};
+ \node [nor port](O2) at (0,-1.5) {};
+ \node [xor port](O3) at (0,-3) {};
+ \node [xnor port](O4) at (0,-4.5) {};
+ 
+ \node at (O1.bin 1) [ocirc, left]{};
+ \node at (O1.bin 2) [ocirc, left]{};
+  
+  
+ \begin{scope}[xshift=3cm]
+	 % new shapes
+	 \ctikzset{american or shape=pointy}
+	 \node [or port](O1) at (0,0) {};
+	 \node [nor port](O2) at (0,-1.5) {};
+	 \node [xor port](O3) at (0,-3) {};
+	 \node [xnor port](O4) at (0,-4.5) {};
+	 \end{scope}
+ \end{circuitikz}
+
+\end{document}
+
+
+

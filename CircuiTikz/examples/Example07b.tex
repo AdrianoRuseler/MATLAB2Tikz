@@ -1,0 +1,22 @@
+\documentclass{standalone}
+\usepackage{circuitikz}
+\usepackage{siunitx}
+\begin{document}
+\begin{circuitikz}
+%	\ctikzset{ieeestd ports/pin length=0.2}
+	 \draw	 
+	 (0,0) node[and port, anchor=in 1]{A1}
+	 (0,-1.2) node[nand port, anchor=in 1]{A2}
+	 (0,-2.4) node[or port, anchor=in 1]{A3}
+	 (0,-3.6) node[xnor port, anchor=in 1]{A4};
+	 \draw
+	 (3,0) node[and port, anchor=in 1](A1){A1}
+	 (3,-1.2) node[nand port, anchor=in 1]{A2}
+	 (3,-2.4) node[or port, anchor=in 1]{A3}
+	 (3,-3.6) node[xnor port, anchor=in 1](A4){A4};
+	 \end{circuitikz}
+
+\end{document}
+
+
+
