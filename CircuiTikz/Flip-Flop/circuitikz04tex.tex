@@ -1,0 +1,26 @@
+\documentclass[tikz,border=2mm]{standalone}
+\usepackage{circuitikz}
+
+\begin{document}
+	
+	\begin{circuitikz}
+		% Draw the D flip-flop block
+		\node[draw, flipflop, text width=2cm] (FF) at (0,0) {D};
+		
+		% Add inputs and outputs
+		\node[left=1cm of FF.D] (Din) {$D$};
+		\node[above right=1cm and 0.5cm of FF] (Clk) {$Clk$};
+		\node[right=1cm of FF.Q] (Qout) {$Q$};
+		\node[right=1cm of FF.notQ] (notQout) {$\overline{Q}$};
+		
+		% Connect inputs and outputs
+		\draw[->] (Din) -- (FF.D);
+		\draw[->] (Clk) -- (FF.clock);
+		\draw[->] (FF.Q) -- (Qout);
+		\draw[->] (FF.notQ) -- (notQout);
+		
+		% Add labels for clarity
+		\node[below=0.5cm of FF] {D Flip-Flop};
+	\end{circuitikz}
+	
+\end{document}

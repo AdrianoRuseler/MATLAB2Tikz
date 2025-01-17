@@ -1,0 +1,30 @@
+\documentclass[border=10pt]{standalone}
+\usepackage[siunitx, RPvoltages]{circuitikz}
+\ctikzset{logic ports=ieee}
+% see the circuitikz manual at flip-flops
+\tikzset{sr-ff/.style={flipflop, flipflop def={
+			t1=S, t2=CP, t3=R, t4={\ctikztextnot{Q}},t6=Q, nd=1}},
+}
+\ctikzset{
+	logic ports/scale=0.7,
+}
+\newcommand{\myblock}[1]{% the parameter will be prepended to the relevant node names
+	node[sr-ff](#1-FF){} (#1-FF.up) node[above]{SR-FF}
+	(#1-FF.pin 1) -- ++(-1,0) node[and port, anchor=out](#1-AND1){}
+	% notice the second coordinate here, so that I have just one number
+	% to change if I want more or less space
+	(#1-FF.pin 3) -- (#1-FF.pin 3 -| #1-AND1.out) node[and port, anchor=out](#1-AND2){}
+	% go left again to put the not insert point
+	(#1-AND1.in 1) to[short, -*] ++(-1,0) coordinate(not up)
+	% let's position the NOT in the center to be really finicky
+	% this is using the calc tikz library
+	($(not up)!0.5!(not up|- #1-AND2.in 2)$) node[not port, rotate=-90](#1-NOT){}
+	% and connect it
+	(not up) -- (#1-NOT.in) (#1-NOT.out) |- (#1-AND2.in 2)
+}
+\begin{document}
+	\begin{circuitikz}
+		\draw (0,0) \myblock{A};
+		\draw (0,-5) \myblock{B};
+	\end{circuitikz}
+\end{document}

@@ -1,0 +1,16 @@
+\documentclass{article}
+\usepackage{circuitikz}
+\begin{document}
+	\begin{center}
+ 	\begin{circuitikz}[]
+	%	 \ctikzset{logic ports=european,tripoles/european not symbol=ieee circle}
+	\draw (0,0) node[nand port](A){}
+	(A.out) to[short] ++(0.5,0)
+	node[flipflop JK, dot on notQ, anchor=pin 2]{JK};
+	%		 \ctikzset{logic ports=european,tripoles/european not symbol=circle}
+	\draw (0,-3) node[nand port](A){}
+	(A.out) to[short] ++(0.5,0)
+	node[flipflop JK, dot on notQ, anchor=pin 2]{JK};
+\end{circuitikz}
+	\end{center}
+\end{document}

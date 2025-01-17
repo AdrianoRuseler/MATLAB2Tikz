@@ -1,0 +1,51 @@
+\documentclass[border=4pt]{standalone}
+\usepackage{tikz}
+\usepackage[RPvoltages]{circuitikz}
+\tikzset{flipflop DQ/.style={flipflop, scale=.7,
+		flipflop def={t1=D, t6=Q, c3=1,
+			clock wedge size=.3, font=\normalsize}
+}}
+
+\tikzset{flipflop DQ1/.style={flipflop, scale=.7,
+		flipflop def={t1=$D_1$, t6=Q, c3=1,
+			clock wedge size=.3, font=\normalsize}
+}}
+
+\tikzset{flipflop DQBR/.style={flipflop, scale=.7, % Has D, Q, QBar and Reset
+		flipflop def={t1=D, t6=Q, c3=1, t4=\ctikztextnot{Q}, n4=1, nd=1, td=~,
+			clock wedge size=.3, font=\normalsize},
+}}
+
+\tikzset{flipflop DQBR1/.style={flipflop, scale=.7, % Has D, Q, QBar and Reset
+		flipflop def={t1=$D_1$, t6=$Q_1$, c3=1, t4=\ctikztextnot{$Q_1$}, n4=1, nd=1, td=~,
+			clock wedge size=.3, font=\normalsize},
+}}
+
+\tikzset{flipflop DQBR2/.style={flipflop, scale=.7, % Has D, Q, QBar and Reset
+		flipflop def={t1=$D_2$, t6=$Q_2$, c3=1, t4=\ctikztextnot{$Q_2$}, n4=1, nd=1, td=~,
+			clock wedge size=.3, font=\normalsize},
+}}
+
+
+\tikzset{flipflop DQBP/.style={flipflop, scale=.7, % Has D, Q, QBar and Preset
+		flipflop def={t1=D, t6=Q, c3=1, t4=\ctikztextnot{Q}, n4=1, nu=1, tu=~,
+			clock wedge size=.3, font=\normalsize}
+}}
+\begin{document}
+	
+	
+	\begin{circuitikz}
+		\node[flipflop DQBR1] (ff0) at (0,3) {${FF}_1$};
+		\node[flipflop DQBR2] (ff1) at (3,3) {${FF}_2$};
+		\node[flipflop DQBR] (ff2) at (6,3) {2};
+		\node[flipflop DQBP] (ff3) at (0,0) {3};
+		\node[flipflop DQ]   (ff4) at (3,0) {4};
+		\node[flipflop DQ]   (ff5) at (6,0) {5};
+		
+		\draw (ff0.down) -- (ff3.up);
+		\draw (ff1.down) -- (ff4.bup);
+		\draw (ff2.down) -- (ff5.bup);
+		
+	\end{circuitikz}
+	
+\end{document}
