@@ -1,0 +1,22 @@
+\documentclass[border=10pt]{standalone}
+\usepackage[siunitx, RPvoltages]{circuitikz}
+\usetikzlibrary{fit}
+
+\begin{document}
+	\begin{circuitikz}
+		\coordinate (start) at (0,0);
+		\draw (start) -- ++(0,-0.5)
+		node[rotary switch <-=3 in 90 wiper -90, anchor=in, rotate=-90](SW){};
+		\draw (SW.aout 3) -- ++(-1,0) to[sqV, name=sq-gen]
+		++(0,-3) coordinate(gGND);
+		\draw (SW.aout 2) to[sV, -*] (SW.aout 2 |- gGND)
+		-- ++(0,-0.5) node[tlground]{};
+		\draw (SW.aout 1) -- ++(1,0) coordinate(tmp) to[tV, name=t-gen]
+		(tmp |- gGND) -- (gGND);
+		\node[draw, dashed, fit=(SW) (gGND) (sq-gen) (t-gen), inner sep=0.3cm]
+		(signal generator){};
+		\node[right] at (signal generator.east) {\texttt{XFR1}};
+		\node [ocirc] at (signal generator.north){};
+		\node [ocirc] at (signal generator.south){};
+	\end{circuitikz}
+\end{document}
